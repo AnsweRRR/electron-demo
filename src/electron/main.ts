@@ -9,6 +9,7 @@ app.on('ready', () => {
   const mainWindow = new BrowserWindow({
     webPreferences: {
       preload: getPreloadPath(),
+      devTools: isDev(),
     },
     // disables default system frame (dont do this if you want a proper working menu bar)
     frame: true,
