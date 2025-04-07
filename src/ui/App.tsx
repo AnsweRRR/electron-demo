@@ -1,8 +1,9 @@
 import { useEffect, useMemo, useState } from 'react';
-import reactLogo from './assets/react.svg';
 import './App.css';
-import { useStatistics } from './useStatistics';
-import { Chart } from './Chart';
+import { useStatistics } from './hooks/useStatistics';
+import { Chart } from './components/Chart';
+import SelectOption from './components/SelectOption';
+import useStaticData from './hooks/useStaticData';
 
 function App() {
   const staticData = useStaticData();
@@ -37,7 +38,7 @@ function App() {
 
   return (
     <div className="App">
-      <Header />
+      {/* <Header /> */}
       <div className="main">
         <div>
           <SelectOption
@@ -72,57 +73,6 @@ function App() {
       </div>
     </div>
   );
-}
-
-function SelectOption(props: {
-  title: string;
-  view: View;
-  subTitle: string;
-  data: number[];
-  onClick: () => void;
-}) {
-  return (
-    <button className="selectOption" onClick={props.onClick}>
-      <div className="selectOptionTitle">
-        <div>{props.title}</div>
-        <div>{props.subTitle}</div>
-      </div>
-      <div className="selectOptionChart">
-        <Chart selectedView={props.view} data={props.data} maxDataPoints={10} />
-      </div>
-    </button>
-  );
-}
-
-function Header() {
-  return (
-    <header>
-      <button
-        id="close"
-        onClick={() => window.electron.sendFrameAction('CLOSE')}
-      />
-      <button
-        id="minimize"
-        onClick={() => window.electron.sendFrameAction('MINIMIZE')}
-      />
-      <button
-        id="maximize"
-        onClick={() => window.electron.sendFrameAction('MAXIMIZE')}
-      />
-    </header>
-  );
-}
-
-function useStaticData() {
-  const [staticData, setStaticData] = useState<StaticData | null>(null);
-
-  useEffect(() => {
-    (async () => {
-      setStaticData(await window.electron.getStaticData());
-    })();
-  }, []);
-
-  return staticData;
 }
 
 export default App;

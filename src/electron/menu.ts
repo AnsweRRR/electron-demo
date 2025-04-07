@@ -20,7 +20,7 @@ export function createMenu(mainWindow: BrowserWindow) {
         ],
       },
       {
-        label: 'View',
+        label: 'Resources',
         type: 'submenu',
         submenu: [
           {
@@ -44,6 +44,17 @@ export function createMenu(mainWindow: BrowserWindow) {
           },
         ],
       },
+      {
+        label: 'SerialPorts',
+        type: 'submenu',
+        submenu: [
+          {
+            label: 'List',
+            click: () =>
+              ipcWebContentsSend('changePage', mainWindow.webContents, 'serialPorts'),
+          },
+        ]
+      }
     ])
   );
 }
