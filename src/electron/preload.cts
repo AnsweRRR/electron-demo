@@ -9,6 +9,10 @@ electron.contextBridge.exposeInMainWorld('electron', {
     ipcOn('changeView', (view) => {
       callback(view);
     }),
+  subscribeChangePage: (callback) =>
+    ipcOn('changePage', (page) => {
+      callback(page);
+    }),
   getStaticData: () => ipcInvoke('getStaticData'),
   sendFrameAction: (payload) => ipcSend('sendFrameAction', payload),
 } satisfies Window['electron']);

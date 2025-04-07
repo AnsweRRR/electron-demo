@@ -1,13 +1,28 @@
 import './App.css';
-import { HashRouter as Router } from 'react-router-dom';
+import { HashRouter as Router, useNavigate } from 'react-router-dom';
 import AppRoutes from './routes';
+import { useEffect } from 'react';
 
-function App() {
+const AppContent = () => {
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    const unsubscribe = window.electron.subscribeChangePage((targetPath) => {
+      navigate(targetPath);
+    });
+
+    return unsubscribe;
+  }, [navigate]);
+
+  return <AppRoutes />;
+};
+
+const App = () => {
   return (
     <Router>
-      <AppRoutes />
+      <AppContent />
     </Router>
   );
-}
+};
 
 export default App;

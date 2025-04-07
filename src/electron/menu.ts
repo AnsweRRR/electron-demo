@@ -20,41 +20,37 @@ export function createMenu(mainWindow: BrowserWindow) {
         ],
       },
       {
+        label: 'Functions',
+        type: 'submenu',
+        submenu: [
+          {
+            label: 'Resources',
+            click: () => ipcWebContentsSend('changePage', mainWindow.webContents, '/app/resources'),
+          },
+          {
+            label: 'SerialPorts',
+            click: () => ipcWebContentsSend('changePage', mainWindow.webContents, '/app/serialPorts'),
+          },
+        ],
+      },
+      {
         label: 'Resources',
         type: 'submenu',
         submenu: [
           {
             label: 'CPU',
-            click: () =>
-              ipcWebContentsSend('changeView', mainWindow.webContents, 'CPU'),
+            click: () => ipcWebContentsSend('changeView', mainWindow.webContents, 'CPU'),
           },
           {
             label: 'RAM',
-            click: () =>
-              ipcWebContentsSend('changeView', mainWindow.webContents, 'RAM'),
+            click: () => ipcWebContentsSend('changeView', mainWindow.webContents, 'RAM'),
           },
           {
             label: 'STORAGE',
-            click: () =>
-              ipcWebContentsSend(
-                'changeView',
-                mainWindow.webContents,
-                'STORAGE'
-              ),
+            click: () => ipcWebContentsSend('changeView', mainWindow.webContents, 'STORAGE'),
           },
         ],
       },
-      {
-        label: 'SerialPorts',
-        type: 'submenu',
-        submenu: [
-          {
-            label: 'List',
-            click: () =>
-              ipcWebContentsSend('changePage', mainWindow.webContents, 'serialPorts'),
-          },
-        ]
-      }
     ])
   );
 }

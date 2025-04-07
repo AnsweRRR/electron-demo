@@ -12,15 +12,13 @@ type StaticData = {
 
 type View = 'CPU' | 'RAM' | 'STORAGE';
 
-type Page = 'serialPorts' | 'serialPortDetails';
-
 type FrameWindowAction = 'CLOSE' | 'MAXIMIZE' | 'MINIMIZE';
 
 type EventPayloadMapping = {
   statistics: Statistics;
   getStaticData: StaticData;
   changeView: View;
-  changePage: Page;
+  changePage: string;
   sendFrameAction: FrameWindowAction;
 };
 
@@ -34,6 +32,9 @@ interface Window {
     getStaticData: () => Promise<StaticData>;
     subscribeChangeView: (
       callback: (view: View) => void
+    ) => UnsubscribeFunction;
+    subscribeChangePage: (
+      callback: (page: Page) => void
     ) => UnsubscribeFunction;
     sendFrameAction: (payload: FrameWindowAction) => void;
   };
