@@ -3,21 +3,10 @@ import { Navigate, useRoutes } from 'react-router-dom';
 import {
   HomePage,
   MonitorPage,
+  SerialPortPage,
 } from './elements';
 
 import { PATH_APP } from './paths';
-
-// export default function HashRouter() {
-//   return useRoutes([
-//     {
-//       path: PATH_APP.root,
-//       children: [
-//         { index: true, element: <HomePage /> },
-//         { path: 'resources', element: <MonitorPage /> },
-//       ]
-//     }
-//   ]);
-// }
 
 export default function HashRouter() {
   return useRoutes([
@@ -29,7 +18,8 @@ export default function HashRouter() {
       path: PATH_APP.root,
       children: [
         { index: true, element: <HomePage /> },
-        { path: 'resources', element: <MonitorPage /> },
+        { path: PATH_APP.resources, element: <MonitorPage /> },
+        { path: PATH_APP.serialports, element: <SerialPortPage /> },
       ],
     }
   ]);

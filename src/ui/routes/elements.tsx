@@ -9,3 +9,4 @@ const Loadable = (Component: ElementType) => (props: any) =>
 
 export const HomePage = Loadable(lazy(() => import('../pages/HomePage')));
 export const MonitorPage = Loadable(lazy(() => import('../pages/MonitorPage')));
+export const SerialPortPage = Loadable(lazy(() => import('../pages/SerialPortPage')));

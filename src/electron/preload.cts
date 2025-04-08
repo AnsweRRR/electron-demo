@@ -15,6 +15,10 @@ electron.contextBridge.exposeInMainWorld('electron', {
     }),
   getStaticData: () => ipcInvoke('getStaticData'),
   sendFrameAction: (payload) => ipcSend('sendFrameAction', payload),
+  subscribeSerialPorts: (callback) =>
+    ipcOn('serialPorts', (serialPorts) => {
+      callback(serialPorts);
+    }),
 } satisfies Window['electron']);
 
 function ipcInvoke<Key extends keyof EventPayloadMapping>(
