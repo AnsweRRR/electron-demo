@@ -1,16 +1,15 @@
 import { useEffect, useState } from 'react';
+import { SerialPort } from 'serialport';
 
-export function useSerialPorts(): SerialPortInfo[] {
-  const [value, setValue] = useState<SerialPortInfo[]>([]);
+export function useSerialPorts(): Awaited<ReturnType<typeof SerialPort.list>>[number][] {
+  const [value, setValue] = useState<Awaited<ReturnType<typeof SerialPort.list>>[number][]>([]);
 
   useEffect(() => {
-    const unsub = window.electron.subscribeSerialPorts((stats) =>
-      setValue(stats)
+    const unsub = window.electron.subscribeSerialPorts((ports) =>
+      setValue(ports)
     );
     return unsub;
   }, []);
-
-  console.log(value);
 
   return value;
 }

@@ -10,14 +10,6 @@ type StaticData = {
   totalMemoryGB: number;
 };
 
-type SerialPortInfo = {
-  path: string;
-  manufacturer: string;
-  serialNumber?: string;
-  vendorId?: string;
-  productId?: string;
-}
-
 type View = 'CPU' | 'RAM' | 'STORAGE';
 
 type FrameWindowAction = 'CLOSE' | 'MAXIMIZE' | 'MINIMIZE';
