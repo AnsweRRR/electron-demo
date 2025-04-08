@@ -1,36 +1,19 @@
 import { useSerialPorts } from "../hooks/useSerialPorts";
+import tableify from "tableify";
 
 const SerialPortPage = () => {
   const serialPorts = useSerialPorts();
 
   console.log(serialPorts);
 
+  // Convert the serialPorts object into HTML table using tableify
+  const tableHTML = tableify(serialPorts);
+
   return (
     <div>
       <h1>Soros Portok</h1>
-
-      <table>
-        <thead>
-          <tr>
-            <th>Port</th>
-            <th>Manufacturer</th>
-            <th>Serial Number</th>
-            <th>Vendor ID</th>
-            <th>Product ID</th>
-          </tr>
-        </thead>
-        <tbody>
-          {serialPorts.map((port, index) => (
-            <tr key={index}>
-              <td>{port.path}</td>
-              <td>{port.manufacturer || 'N/A'}</td>
-              <td>{port.serialNumber || 'N/A'}</td>
-              <td>{port.vendorId || 'N/A'}</td>
-              <td>{port.productId || 'N/A'}</td>
-            </tr>
-          ))}
-        </tbody>
-      </table>
+      {/* Render the HTML table using dangerouslySetInnerHTML */}
+      <div dangerouslySetInnerHTML={{ __html: tableHTML }} />
     </div>
   );
 };

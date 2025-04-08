@@ -23,7 +23,8 @@
     "react-dom": "^18.3.1",
     "react-router-dom": "^7.5.0",
     "recharts": "^2.15.2",
-    "serialport": "^13.0.0"
+    "serialport": "^13.0.0",
+    "tableify": "^1.1.1"
   },
   "devDependencies": {
     "@playwright/test": "^1.51.1",
@@ -31,6 +32,7 @@
     "@types/os-utils": "^0.0.4",
     "@types/react": "^18.3.20",
     "@types/react-dom": "^18.3.6",
+    "@types/tableify": "^1.1.5",
     "@vitejs/plugin-react": "^4.3.4",
     "cross-env": "^7.0.3",
     "electron": "^32.3.3",
