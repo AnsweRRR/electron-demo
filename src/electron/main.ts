@@ -1,7 +1,7 @@
 import { app, BrowserWindow, Menu } from 'electron';
 import { ipcMainHandle, ipcMainOn, isDev } from './util.js';
 import { getStaticData, pollResources } from './resourceManager.js';
-import { pollSerialPorts } from './serialPortsManager.js';
+import { pollSerialPorts, setupSerialHandlers } from './serialPortsManager.js';
 import { getPreloadPath, getUIPath } from './pathResolver.js';
 import { createTray } from './tray.js';
 import { createMenu } from './menu.js';
@@ -25,6 +25,8 @@ app.on('ready', () => {
   pollResources(mainWindow);
 
   pollSerialPorts(mainWindow);
+
+  setupSerialHandlers(mainWindow);
 
   ipcMainHandle('getStaticData', () => {
     return getStaticData();

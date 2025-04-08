@@ -21,6 +21,9 @@ type EventPayloadMapping = {
   changePage: string;
   sendFrameAction: FrameWindowAction;
   serialPorts: SerialPortInfo[];
+  serialPortData: { path: string; data: string };
+  openSerialPort: string;
+  closeSerialPort: string;
 };
 
 type UnsubscribeFunction = () => void;
@@ -41,5 +44,10 @@ interface Window {
     subscribeSerialPorts: (
       callback: (serialPorts: SerialPortInfo[]) => void
     ) => UnsubscribeFunction;
+    subscribeSerialPortData: (
+      callback: (payload: { path: string; data: string }) => void
+    ) => UnsubscribeFunction;
+    openSerialPort: (path: string) => void;
+    closeSerialPort: (path: string) => void;
   };
 }
