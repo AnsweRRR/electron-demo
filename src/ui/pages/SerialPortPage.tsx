@@ -1,3 +1,4 @@
+import SerialDataDisplay from "../components/SerialDataDisplay";
 import { useSerialPorts } from "../hooks/useSerialPorts";
 import tableify from "tableify";
 
@@ -9,6 +10,8 @@ const SerialPortPage = () => {
     <div>
       <h1>Soros Portok</h1>
       <div dangerouslySetInnerHTML={{ __html: tableHTML }} />
+
+      <SerialDataDisplay />
     </div>
   );
 };

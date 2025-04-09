@@ -21,6 +21,8 @@ type EventPayloadMapping = {
   changePage: string;
   sendFrameAction: FrameWindowAction;
   serialPorts: SerialPortInfo[];
+  serialPort: (port: string, baudRate?: number) => string;
+  serialData: string;
 };
 
 type UnsubscribeFunction = () => void;
@@ -40,6 +42,9 @@ interface Window {
     sendFrameAction: (payload: FrameWindowAction) => void;
     subscribeSerialPorts: (
       callback: (serialPorts: SerialPortInfo[]) => void
+    ) => UnsubscribeFunction;
+    subscribeSerialData: (
+      callback: (data: string) => void
     ) => UnsubscribeFunction;
   };
 }

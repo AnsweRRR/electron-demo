@@ -19,6 +19,8 @@ electron.contextBridge.exposeInMainWorld('electron', {
     ipcOn('serialPorts', (serialPorts) => {
       callback(serialPorts);
     }),
+  subscribeSerialData: (callback: (data: string) => void) => 
+    ipcOn('serialData', callback),
 } satisfies Window['electron']);
 
 function ipcInvoke<Key extends keyof EventPayloadMapping>(

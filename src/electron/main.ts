@@ -2,6 +2,7 @@ import { app, BrowserWindow, Menu } from 'electron';
 import { ipcMainHandle, ipcMainOn, isDev } from './util.js';
 import { getStaticData, pollResources } from './resourceManager.js';
 import { pollSerialPorts } from './serialPortsManager.js';
+import { watchSerialPort } from './serialPortWatcher.js';
 import { getPreloadPath, getUIPath } from './pathResolver.js';
 import { createTray } from './tray.js';
 import { createMenu } from './menu.js';
@@ -23,8 +24,8 @@ app.on('ready', () => {
   }
 
   pollResources(mainWindow);
-
   pollSerialPorts(mainWindow);
+  watchSerialPort('COM1', 9600, mainWindow);
 
   ipcMainHandle('getStaticData', () => {
     return getStaticData();
